@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <title>React Intro</title>
+    <script>
+        window.addEventListener('load', init);
+        function init(){
+            var btnReactRender = document.getElementById('btnReactRender');
+            btnReactRender.addEventListener('click', onBtnReactRenderClick);
+        }
+
+        var counter = 0;
+        function onBtnReactRenderClick(){
+
+           var appEle = React.createElement('section', null, 
+                React.createElement('h1', null, 'Welcome to React'),
+                React.createElement('hr'),
+                React.createElement('div', null,
+                    React.createElement('h3', null, 'Introduction'),
+                    React.createElement('hr'),
+                    React.createElement('p', null, 'Ut dolore aute officia minim nisi. Eiusmod sint amet pariatur non quis aute voluptate laborum aute. Veniam ut commodo sunt laboris voluptate ipsum minim laborum nulla qui culpa nulla. Ea ex deserunt cillum officia consequat sint in tempor exercitation culpa est consectetur. Ea nostrud culpa eiusmod voluptate ad qui ex eiusmod. Tempor culpa mollit laborum irure consectetur proident eu id. Dolore et id aliqua ex aute veniam voluptate magna adipisicing cillum. Ut occaecat irure irure amet in sint anim reprehenderit cupidatat adipisicing aute Lorem. Et excepteur do ea eiusmod cillum quis non consequat veniam officia. Minim ad esse ex sunt voluptate. Deserunt mollit adipisicing ullamco Lorem nisi ullamco ea ea qui. Veniam sit voluptate sunt non voluptate nostrud in. In ea deserunt laborum exercitation incididunt reprehenderit consectetur velit aute tempor eiusmod quis sit adipisicing. Amet esse sint dolor ex aute est est officia veniam duis et. Ipsum consequat non aute mollit adipisicing sint aliquip elit dolor. Dolor quis cillum proident voluptate laborum aute qui duis deserunt incididunt. Nostrud mollit est aliquip dolor veniam veniam.'),
+                    React.createElement('p', null, 'Ut dolore aute officia minim nisi. Eiusmod sint amet pariatur non quis aute voluptate laborum aute. Veniam ut commodo sunt laboris voluptate ipsum minim laborum nulla qui culpa nulla. Ea ex deserunt cillum officia consequat sint in tempor exercitation culpa est consectetur. Ea nostrud culpa eiusmod voluptate ad qui ex eiusmod. Tempor culpa mollit laborum irure consectetur proident eu id. Dolore et id aliqua ex aute veniam voluptate magna adipisicing cillum. Ut occaecat irure irure amet in sint anim reprehenderit cupidatat adipisicing aute Lorem. Et excepteur do ea eiusmod cillum quis non consequat veniam officia. Minim ad esse ex sunt voluptate. Deserunt mollit adipisicing ullamco Lorem nisi ullamco ea ea qui. Veniam sit voluptate sunt non voluptate nostrud in. In ea deserunt laborum exercitation incididunt reprehenderit consectetur velit aute tempor eiusmod quis sit adipisicing. Amet esse sint dolor ex aute est est officia veniam duis et. Ipsum consequat non aute mollit adipisicing sint aliquip elit dolor. Dolor quis cillum proident voluptate laborum aute qui duis deserunt incididunt. Nostrud mollit est aliquip dolor veniam veniam.')  
+                ),
+                React.createElement('div', null,
+                    React.createElement('h3', null, 'Advantages'),
+                    React.createElement('hr'),
+                    React.createElement('ol', null,
+                        React.createElement('li', null, 'Simplicity'),
+                        React.createElement('li', null, 'Declarative'),
+                    )
+                )
+           );
+            ReactDOM.render(appEle, document.getElementById('reactRender'));
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="React-Render" id="btnReactRender">
+    <div id="reactRender">
+
+    </div>
+</body>
+</html>

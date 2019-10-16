@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <title>React Intro</title>
+    <script type="text/babel">
+        window.addEventListener('load', init);
+        function init(){
+            var btnReactRender = document.getElementById('btnReactRender');
+            btnReactRender.addEventListener('click', onBtnReactRenderClick);
+        }
+
+        var counter = 0;
+        function onBtnReactRenderClick(){
+            //jsx
+           var appEle = (
+                <section>
+                    <h1>Welcome to React</h1>
+                    <hr/>
+                    <div>
+                        <h3>Introduction</h3>
+                        <hr/>
+                        <div>
+                            <span>Counter :</span>
+                            <span>{++counter}</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis doloremque, nam laudantium tempora asperiores cumque ducimus voluptatum numquam obcaecati ea voluptatibus quam quos, sint aliquam iste! A corporis, magnam voluptates!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam quis incidunt ullam veniam corporis quasi iure praesentium et repellat ipsam blanditiis officiis, vitae, voluptatem alias illum rem magni nulla cumque.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus necessitatibus quod, enim ducimus. Sint sit quam, accusantium itaque, maxime eligendi fugit optio animi veniam fuga numquam asperiores quo voluptas commodi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt aliquam nulla quisquam quo, et totam eos soluta sunt! Dolorum quidem obcaecati, nobis voluptatem sequi magni culpa libero doloremque iste provident!</p>
+                    </div>
+                    <div>
+                        <h3>Advantages</h3>
+                        <hr/>
+                        <ol>
+                            <li>Simplicity</li>
+                            <li>Declarative</li>
+                        </ol>
+                    </div>
+                </section>
+            )
+            ReactDOM.render(appEle, document.getElementById('reactRender'));
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="React-Render" id="btnReactRender">
+    <div id="reactRender">
+
+    </div>
+</body>
+</html>

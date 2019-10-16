@@ -28,6 +28,12 @@
                 n2 : 0,
                 result : 0
             }
+            setN1 = (value) => {
+                this.setState({n1 : value});
+            }
+            setN2 = (value) => {
+                this.setState({n2 : value});
+            }
             onAddClick = () => {
                 let result = this.state.n1 + this.state.n2;
                 this.setState({ result : result})  
@@ -47,14 +53,8 @@
             render(){
                 return(
                     <div>
-                        <div>
-                            <label>Number 1 :</label>
-                            <input type="number" onChange={evt => this.setState({ n1 : evt.target.valueAsNumber})} />
-                        </div>
-                        <div>
-                            <label>Number 2 :</label>
-                            <input type="number" onChange={evt => this.setState({ n2 : evt.target.valueAsNumber})} />
-                        </div>
+                       <CalculatorInput labelText="Number 1" onInputChange={this.setN1}/>
+                        <CalculatorInput labelText="Number 2" onInputChange={this.setN2} />
                         <input type="button" value="Add" onClick={this.onAddClick} />
                         <input type="button" value="Subtract" onClick={this.onSubtractClick} />
                         <input type="button" value="Multiply" onClick={this.onMultiplyClick} />
@@ -65,6 +65,17 @@
             }
         }
 
+        class CalculatorInput extends React.Component{
+            render(){
+                let { labelText, onInputChange } = this.props;
+                return(
+                    <div>
+                        <label>{labelText}</label>
+                        <input type="number" onChange={evt => onInputChange(evt.target.valueAsNumber)} />
+                    </div>
+                )
+            }
+        }
         class CalculatorResult extends React.Component{
             render(){
                 let { data } = this.props;

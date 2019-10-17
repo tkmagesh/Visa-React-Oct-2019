@@ -5,12 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Spinner</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="state-manager.js"></script>
+    <script type="text/babel">
+        function spinnerReducer(currentState = 0, action){
+	
+            //when an action is dispatched
+            if (action === 'UP') return ++currentState;
+            if (action === 'DOWN') return --currentState;
+            
+            //initializing the store state
+            return currentState;
+        }
+        var store = SM.createStore(spinnerReducer);
+        /*
+        class Spinner extends React.Component{
+            onDownClick =() => {
+                this.props.store.dispatch('DOWN');
+            }
+            onUpClick = () => {
+                this.props.store.dispatch('UP');
+            }
+            render(){
+                let value = this.props.store.getState();
+                return(
+                    <div>
+                            <input type="button" value="DOWN" onClick={this.onDownClick}/>
+                            <span> [ {value} ] </span>
+                            <input type="button" value="UP" onClick={this.onUpClick}/>
+                    </div>
+                )
+            }
+        }
+        */
+
+        /*
+        class Spinner extends React.Component{
+            render(){
+                let { store } = this.props;
+                let value = store.getState();
+                return(
+                    <div>
+                            <input type="button" value="DOWN" onClick={() => store.dispatch('DOWN')}/>
+                            <span> [ {value} ] </span>
+                            <input type="button" value="UP" onClick={() => store.dispatch('UP')}/>
+                    </div>
+                )
+            }
+        }
+        */
+
+        //Higher Order Component [HOC]
+        /*
+        let Spinner = function(props){
+            let { store } = props;
+            let value = store.getState();
+            return(
+                <div>
+                        <input type="button" value="DOWN" onClick={() => store.dispatch('DOWN')}/>
+                        <span> [ {value} ] </span>
+                        <input type="button" value="UP" onClick={() => store.dispatch('UP')}/>
+                </div>
+            )
+        }
+        */
+       /*
+        let Spinner = function({store}){
+            return(
+                <div>
+                        <input type="button" value="DOWN" onClick={() => store.dispatch('DOWN')}/>
+                        <span> [ {store.getState()} ] </span>
+                        <input type="button" value="UP" onClick={() => store.dispatch('UP')}/>
+                </div>
+            )
+        }
+        */
+        let Spinner = ({store}) => (
+            <div>
+                    <input type="button" value="DOWN" onClick={() => store.dispatch('DOWN')}/>
+                    <span> [ {store.getState()} ] </span>
+                    <input type="button" value="UP" onClick={() => store.dispatch('UP')}/>
+            </div>
+        );
+        
+        function renderSpinner(){
+            ReactDOM.render(<Spinner store={store}/>,
+                document.getElementById('root'));
+        }
+        renderSpinner();
+        store.subscribe(renderSpinner);
+    </script>
 </head>
 <body>
     <h1>Spinner</h1>
     <hr>
-    <input type="button" value="DOWN">
-    <span> [Value] </span>
-    <input type="button" value="UP">
+    <div id="root"></div>
 </body>
 </html>

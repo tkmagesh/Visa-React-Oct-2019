@@ -13,8 +13,8 @@
         function spinnerReducer(currentState = 0, action){
 	
             //when an action is dispatched
-            if (action === 'UP') return ++currentState;
-            if (action === 'DOWN') return --currentState;
+            if (action.type === 'UP') return currentState + action.payload;
+            if (action.type === 'DOWN') return currentState - action.payload;
             
             //initializing the store state
             return currentState;
@@ -22,18 +22,25 @@
         var store = SM.createStore(spinnerReducer);
         
         class Spinner extends React.Component{
+            state ={
+                delta : 0
+            }
             onDownClick =() => {
-                this.props.store.dispatch('DOWN');
+                let delta = this.state.delta,
+                    action = { type : 'DOWN', payload : delta}
+                this.props.store.dispatch(action);
             }
             onUpClick = () => {
-                this.props.store.dispatch('UP');
+                let delta = this.state.delta,
+                    action = { type : 'UP', payload : delta}
+                this.props.store.dispatch(action);
             }
             render(){
                 let value = this.props.store.getState();
                 return(
                     <div>
                             <span>Delta :</span>
-                            <input type="number" />
+                            <input type="number" onChange={ evt => this.setState({delta : evt.target.valueAsNumber})} />
                             <br/>
                             <input type="button" value="DOWN" onClick={this.onDownClick}/>
                             <span> [ {value} ] </span>

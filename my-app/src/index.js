@@ -4,17 +4,30 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import  Spinner from './spinner';
-import * as spinnerActionCreators from './spinner/actions';
+
 import store from './store';
 import { bindActionCreators } from 'redux';
 
-let actionDispatchers = bindActionCreators(spinnerActionCreators, store.dispatch);
+import  Spinner from './spinner';
+import * as spinnerActionCreators from './spinner/actions';
+
+import BugTracker from './bugTracker';
+import * as bugActionCreators from './bugTracker/actions';
+
+let bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
+let spinnerActionDispatchers = bindActionCreators(spinnerActionCreators, store.dispatch);
      
 function renderSpinner(){
-    let value = store.getState();
+    let storeState = store.getState(),
+        value = storeState.spinnerData,
+        bugs = storeState.bugsData
   
-    ReactDOM.render(<Spinner value={value}  {...actionDispatchers}/>,
+    ReactDOM.render(
+        <div>
+            <Spinner value={value}  {...spinnerActionDispatchers}/>
+            <hr/>
+            <BugTracker {...{bugs, ...bugActionDispatchers}} />
+        </div>,
         document.getElementById('root'));
 }
 renderSpinner();

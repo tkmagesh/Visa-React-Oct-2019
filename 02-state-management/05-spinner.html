@@ -32,6 +32,7 @@
             }
         }
 
+        /*
         function bindActionCreators(spinnerActionCreator, dispatch){
             let actionDispatchers = {
                 down(delta){
@@ -40,6 +41,18 @@
                 },
                 up(delta){
                     let action = spinnerActionCreator.up(delta);
+                    dispatch(action);
+                }
+            }
+            return actionDispatchers;
+        }
+        */
+
+        function bindActionCreators(actionCreators, dispatch){
+            let actionDispatchers = {};
+            for(let key in actionCreators){
+                actionDispatchers[key] = function(...args){
+                    let action = actionCreators[key](...args);
                     dispatch(action);
                 }
             }

@@ -1,0 +1,31 @@
+function spinnerReducer(currentState = 0, action){
+	
+	//when an action is dispatched
+	if (action === 'UP') return ++currentState;
+	if (action === 'DOWN') return --currentState;
+	
+	//initializing the store state
+	return currentState;
+}
+var store = SM.createStore(spinnerReducer)
+
+store.getState()
+0
+store.dispatch('UP')
+store.getState()
+1
+store.dispatch('UP')
+store.getState()
+2
+store.subscribe(_ => console.log(store.getState()));
+store.dispatch('UP')
+store.dispatch('UP')
+store.dispatch('UP')
+store.dispatch('UP')
+store.dispatch('DOWN')
+store.dispatch('DOWN')
+store.dispatch('DOWN')
+store.dispatch('DOWN')
+store.dispatch('DOWN')
+store.dispatch('DOWN')
+store.dispatch('DOWN')

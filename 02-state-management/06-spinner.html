@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spinner</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="state-manager.js"></script>
+    <script type="text/babel">
+        function spinnerReducer(currentState = 0, action){
+	
+            //when an action is dispatched
+            if (action.type === 'UP') return currentState + action.payload;
+            if (action.type === 'DOWN') return currentState - action.payload;
+            
+            //initializing the store state
+            return currentState;
+        }
+        var store = SM.createStore(spinnerReducer);
+
+        var spinnerActionCreator = {
+            down(delta){
+                let action = { type : 'DOWN', payload : delta};
+                return action;
+            },
+            up(delta){
+                let action = { type : 'UP', payload : delta};
+                return action;
+            }
+        }
+        
+        class Spinner extends React.Component{
+            state ={
+                delta : 0
+            }
+            render(){
+                let { value, up, down } = this.props,
+                    { delta } = this.state;
+                return(
+                    <div>
+                            <span>Delta :</span>
+                            <input type="number" onChange={ evt => this.setState({delta : evt.target.valueAsNumber})} />
+                            <br/>
+                            <input type="button" value="DOWN" onClick={() => down(delta)}/>
+                            <span> [ {value} ] </span>
+                            <input type="button" value="UP" onClick={() => up(delta)}/>
+                    </div>
+                )
+            }
+        }
+        
+        let actionDispatchers = SM.bindActionCreators(spinnerActionCreator, store.dispatch);
+     
+        function renderSpinner(){
+            let value = store.getState();
+          
+            ReactDOM.render(<Spinner value={value}  {...actionDispatchers}/>,
+                document.getElementById('root'));
+        }
+        renderSpinner();
+        store.subscribe(renderSpinner);
+    </script>
+</head>
+<body>
+    <h1>Spinner</h1>
+    <hr>
+    <div id="root"></div>
+</body>
+</html>

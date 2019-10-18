@@ -11,9 +11,10 @@ import * as bugActionCreators from './actions';
 
 class BugTracker extends Component{
     render(){
-        let { bugs, addNew, toggle, removeClosed } = this.props;
+        let { bugs, addNew, toggle, removeClosed, load } = this.props;
         return(
             <div>
+                <input type="button" value="LOAD DATA" onClick={load} />
                 <BugStats bugs={bugs}></BugStats>
                 <BugSort/>
                 <BugEdit addNew={addNew}></BugEdit>
@@ -35,5 +36,5 @@ function mapStateToProps(storeState){
 
 export default connect(
     mapStateToProps, 
-    mapDispatchToProps)
-(BugTracker);
+    mapDispatchToProps
+)(BugTracker);

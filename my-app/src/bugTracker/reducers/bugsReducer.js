@@ -1,18 +1,18 @@
 export function bugsReducer(currentState = [], action){
     switch (action.type) {
         case 'ADD_NEW':
-            var newState = [...currentState, action.payload];
-            return newState;
-            break;
+            return [...currentState, action.payload];
         case 'REPLACE':
-            var {oldBug, newBug} = action.payload;
-            var newState = currentState.map(bug => bug === oldBug ? newBug : bug );
-            return newState;
-
+            let {oldBug, newBug} = action.payload;
+            return currentState.map(bug => bug === oldBug ? newBug : bug );
         case 'REPLACE_ALL':
-            var bugsToReplace = action.payload;
-            var newState = currentState.filter(bug => bugsToReplace.indexOf(bug) === -1);
-            return newState;
+            let bugsToReplace = action.payload;
+            return currentState.filter(bug => bugsToReplace.indexOf(bug) === -1);
+        case 'REMOVE':
+                let bugToReplace = action.payload;
+                return currentState.filter(bug => bug.id !== bugToReplace.id);
+        case  'LOAD' :
+            return action.payload;
         default:
             return currentState;
     }

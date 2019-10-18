@@ -22,3 +22,18 @@ class BugTracker extends Component{
         )
     }
 }
+
+function mapDispatchToProps(dispatch){
+    let bugActionDispatchers = bindActionCreators(bugActionCreators, dispatch);
+    return bugActionDispatchers;
+}
+
+function mapStateToProps(storeState){
+    let bugs = storeState.bugsData;
+    return { bugs : bugs };
+}
+
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps)
+(BugTracker);
